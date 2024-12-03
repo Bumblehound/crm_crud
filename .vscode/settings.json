@@ -1,0 +1,8 @@
+{
+    "python.defaultInterpreterPath": "venv\\Scripts\\python",
+    "emmet.includeLanguages": {
+     "django-html": "html",
+    }   
+    
+}
+  
