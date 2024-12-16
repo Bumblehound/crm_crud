@@ -7,6 +7,8 @@ from django.forms.widgets import PasswordInput, TextInput
 
 from django import forms
 
+from .models import Record
+
 # Register/Create a user
 
 class CreateUserForm(UserCreationForm):
@@ -14,7 +16,20 @@ class CreateUserForm(UserCreationForm):
         model = User
         fields = ['username', 'password1', 'password2'] # Password 2 is a confirmation of their password
     
-# Login a user 
+# - Login a user 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(widget=TextInput())
     password = forms.CharField(widget=PasswordInput)
+
+
+# - Create a record
+class CreateRecordForm(forms.ModelForm):
+    class Meta:
+        model = Record
+        fields = ['first_name', 'last_name', 'email', 'phone_number', 'address', 'city', 'county', 'country'] 
+
+# - Update a record
+class UpdateRecordForm(forms.ModelForm):
+    class Meta:
+        model = Record
+        fields = ['first_name', 'last_name', 'email', 'phone_number', 'address', 'city', 'county', 'country'] 

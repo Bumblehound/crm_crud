@@ -1,0 +1,70 @@
+{% extends "webapp/base.html" %}
+
+{% block content %}
+
+    <!-- Welcome Message -->
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="display-4 text-primary">Welcome, {{ user }}!</h2>
+                <p class="lead">Manage your records seamlessly from this dashboard.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create New Record Button -->
+    <div class="container mb-4 d-flex justify-content-end">
+        <a class="btn btn-success btn-lg" href="{% url 'create-record' %}" role="button">
+            <i class="bi bi-plus-circle"></i> Create a New Record
+        </a>
+    </div>
+
+    <!-- Table for Records -->
+    <div class="container">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Records Overview</h5>
+                <p class="card-text">Here you can view the essential details of your records.</p>
+
+                <!-- Table with Overflow -->
+                <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+                    <table class="table table-striped table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col" class="text-center">Full Name</th>
+                                <th scope="col" class="text-center">Email</th>
+                                <th scope="col" class="text-center">Phone Number</th>
+                                <th scope="col" class="text-center">Date Joined</th>
+                                <th scope="col" class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if records %}
+                                {% for record in records %}
+                                    <tr>
+                                        <td class="text-center align-middle">{{ record.first_name }} {{ record.last_name }}</td>
+                                        <td class="text-center align-middle">{{ record.email }}</td>
+                                        <td class="text-center align-middle">{{ record.phone_number }}</td>
+                                        <td class="text-center align-middle">{{ record.creation_date|date:"M d, Y" }}</td>  <!-- Formatted Date -->
+                                        <td class="text-center align-middle">
+                                            <a class="btn btn-outline-secondary btn-sm" href="{% url 'record' record.id %}" data-bs-toggle="tooltip" data-bs-placement="top" title="View details">
+                                                <i class="bi bi-eye"></i> View
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="5" class="text-center text-muted">
+                                        <i class="bi bi-exclamation-circle"></i> No records available at the moment. Please create a record.
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

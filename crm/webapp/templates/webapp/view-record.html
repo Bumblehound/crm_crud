@@ -1,0 +1,73 @@
+{% extends "webapp/base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white d-flex align-items-center">
+            <a class="text-white me-3" href="{% url 'dashboard' %}" style="font-size: 1.5rem; font-weight: bold;">
+                <i class="bi bi-arrow-left"></i>
+            </a>
+            <h4 class="mb-0">Record Details</h4>
+        </div>
+        <div class="card-body">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h5 class="border-bottom pb-2">Personal Information</h5>
+                </div>
+                <div class="col-md-6">
+                    <strong>Name:</strong>
+                    <p>{{ record.first_name }} {{ record.last_name }}</p>
+                </div>
+                <div class="col-md-6">
+                    <strong>Email:</strong>
+                    <p>{{ record.email }}</p>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h5 class="border-bottom pb-2">Contact Details</h5>
+                </div>
+                <div class="col-md-6">
+                    <strong>Phone Number:</strong>
+                    <p>{{ record.phone_number }}</p>
+                </div>
+                <div class="col-md-6">
+                    <strong>Address:</strong>
+                    <p>{{ record.address }}</p>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h5 class="border-bottom pb-2">Location</h5>
+                </div>
+                <div class="col-md-6">
+                    <strong>City:</strong>
+                    <p>{{ record.city }}</p>
+                </div>
+                <div class="col-md-6">
+                    <strong>County:</strong>
+                    <p>{{ record.county }}</p>
+                </div>
+                <div class="col-md-6">
+                    <strong>Country:</strong>
+                    <p>{{ record.country }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <h5 class="border-bottom pb-2">Additional Information</h5>
+                </div>
+                <div class="col-md-6">
+                    <strong>Creation Date:</strong>
+                    <p>{{ record.creation_date }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer d-flex justify-content-end gap-2">
+            {% comment %} <a class="btn btn-secondary btn-sm" href="{% url 'dashboard' %}">Return</a> {% endcomment %}
+            <a class="btn btn-outline-primary btn-sm" href="{% url 'update-record' record.id %}">Update</a>
+            <a class="btn btn-outline-danger btn-sm" href="{% url 'delete-record' record.id %}">Delete</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

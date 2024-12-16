@@ -1,0 +1,24 @@
+{% extends "webapp/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <body>
+        <!-- Form container -->
+        <div class="container shadow p-4 bg-body-tertiary rounded w-50 overflow-x-auto" > 
+            <h3 class="text-center">Create record</h3>
+            <h6>Start adding in the required details for your record.</h6>
+
+            <hr>
+
+            <form method="POST" autocomplete="off">
+
+                {% csrf_token %}
+                {{ form|crispy }}
+                    
+                <a class="btn btn-outline-danger btn-sm" href={% url 'dashboard' %}>Cancel</a>
+                <button type="submit" class="btn btn-outline-primary btn-sm">Create record</button>              
+            </form>
+        </div>
+    </body>
+{% endblock content %}
